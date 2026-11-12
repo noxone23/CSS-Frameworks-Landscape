@@ -32,7 +32,7 @@ export default function Button({
   return (
     <button
       type={type}
-      className={`cursor-pointer bg-surface-raised shadow-raised active:shadow-sunken aria-pressed:bg-bevel-mid aria-pressed:font-bold aria-pressed:shadow-sunken ${SIZES[size]} ${VARIANTS[variant]} ${FOCUS_RING} ${className}`}
+      className={`cursor-pointer bg-surface-raised shadow-raised active:shadow-sunken aria-pressed:bg-bevel-mid aria-pressed:shadow-sunken ${SIZES[size]} ${VARIANTS[variant]} ${FOCUS_RING} ${className}`}
       {...props}
     />
   );

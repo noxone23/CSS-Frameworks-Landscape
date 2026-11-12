@@ -1,6 +1,7 @@
 @import "tailwindcss";
 
-@theme {
+/* `static` keeps the -dark tokens in the output, they are used by the dark block below. */
+@theme static {
   --font-sans: Tahoma, "MS Sans Serif", Arial, sans-serif;
 
   --color-surface: #008080;
@@ -27,6 +28,26 @@
   --color-status-done-bg: #b0ffb0;
   --color-status-done-text: #004000;
 
+  /* Dark mode values. They replace the tokens above when data-theme is "dark". */
+  --color-surface-dark: #0b3030;
+  --color-surface-raised-dark: #2b2b2b;
+  --color-field-dark: #141414;
+  --color-ink-dark: #f0f0f0;
+  --color-muted-dark: #b8b8b8;
+  --color-danger-dark: #ff9090;
+  --color-star-dark: #ffd34d;
+  --color-tooltip-dark: #4a4a28;
+  --color-bevel-light-dark: #6b6b6b;
+  --color-bevel-mid-dark: #404040;
+  --color-bevel-shadow-dark: #1a1a1a;
+  --color-bevel-dark-dark: #000000;
+  --color-status-want-bg-dark: #1e3a6e;
+  --color-status-want-text-dark: #cce0ff;
+  --color-status-reading-bg-dark: #5c4a00;
+  --color-status-reading-text-dark: #ffffa0;
+  --color-status-done-bg-dark: #0f4d1f;
+  --color-status-done-text-dark: #b0ffb0;
+
   --shadow-raised:
     inset -1px -1px var(--color-bevel-dark),
     inset 1px 1px var(--color-bevel-light),
@@ -37,6 +58,28 @@
     inset 1px 1px var(--color-bevel-shadow),
     inset -2px -2px var(--color-bevel-mid),
     inset 2px 2px var(--color-bevel-dark);
+}
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --color-surface: var(--color-surface-dark);
+  --color-surface-raised: var(--color-surface-raised-dark);
+  --color-field: var(--color-field-dark);
+  --color-ink: var(--color-ink-dark);
+  --color-muted: var(--color-muted-dark);
+  --color-danger: var(--color-danger-dark);
+  --color-star: var(--color-star-dark);
+  --color-tooltip: var(--color-tooltip-dark);
+  --color-bevel-light: var(--color-bevel-light-dark);
+  --color-bevel-mid: var(--color-bevel-mid-dark);
+  --color-bevel-shadow: var(--color-bevel-shadow-dark);
+  --color-bevel-dark: var(--color-bevel-dark-dark);
+  --color-status-want-bg: var(--color-status-want-bg-dark);
+  --color-status-want-text: var(--color-status-want-text-dark);
+  --color-status-reading-bg: var(--color-status-reading-bg-dark);
+  --color-status-reading-text: var(--color-status-reading-text-dark);
+  --color-status-done-bg: var(--color-status-done-bg-dark);
+  --color-status-done-text: var(--color-status-done-text-dark);
 }
 
 @layer base {

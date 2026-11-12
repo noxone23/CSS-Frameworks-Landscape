@@ -2,8 +2,13 @@
 :root {
   --app-gradient: linear-gradient(135deg, #e2e8f0 0%, #dbe4f0 55%, #e6ebf2 100%);
   --glass-bg: rgba(var(--bs-body-bg-rgb), 0.72);
-  --glass-card-bg: rgba(255, 255, 255, 0.42);
+  --glass-card-bg: rgba(var(--bs-body-bg-rgb), 0.42);
   --glass-card-blur: blur(20px);
+  --tint-blue: rgba(96, 165, 250, 0.22);
+  --tint-violet: rgba(167, 139, 250, 0.22);
+  --tint-rose: rgba(251, 113, 133, 0.18);
+  --tint-amber: rgba(251, 191, 36, 0.2);
+  --tint-green: rgba(52, 211, 153, 0.2);
   --glass-border: rgba(255, 255, 255, 0.75);
   --glass-blur: blur(14px);
   --glass-shadow: 0 6px 24px rgba(15, 23, 42, 0.08);
@@ -11,8 +16,28 @@
   --accent: #334155;
   --accent-hover: #1e293b;
   --accent-contrast: #ffffff;
+  --accent-rgb: 51, 65, 85;
   --motion-fast: 0.25s;
   --motion-enter: 0.5s;
+}
+
+/* Dark mode: Bootstrap switches its own colors with data-bs-theme, we adjust ours. */
+[data-bs-theme="dark"] {
+  --app-gradient: linear-gradient(135deg, #0f172a 0%, #1e293b 55%, #111827 100%);
+  --glass-bg: rgba(var(--bs-body-bg-rgb), 0.6);
+  --glass-card-bg: rgba(var(--bs-body-bg-rgb), 0.45);
+  --tint-blue: rgba(96, 165, 250, 0.2);
+  --tint-violet: rgba(167, 139, 250, 0.2);
+  --tint-rose: rgba(251, 113, 133, 0.16);
+  --tint-amber: rgba(251, 191, 36, 0.16);
+  --tint-green: rgba(52, 211, 153, 0.16);
+  --glass-border: rgba(255, 255, 255, 0.14);
+  --glass-shadow: 0 6px 24px rgba(0, 0, 0, 0.35);
+  --glass-shadow-hover: 0 14px 36px rgba(0, 0, 0, 0.55);
+  --accent: #e2e8f0;
+  --accent-hover: #ffffff;
+  --accent-contrast: #0f172a;
+  --accent-rgb: 226, 232, 240;
 }
 
 body {
@@ -31,7 +56,7 @@ body {
   --bs-btn-active-color: var(--accent-contrast);
   --bs-btn-active-bg: var(--accent-hover);
   --bs-btn-active-border-color: var(--accent-hover);
-  --bs-btn-focus-shadow-rgb: 51, 65, 85;
+  --bs-btn-focus-shadow-rgb: var(--accent-rgb);
 }
 
 .btn-accent-outline {
@@ -43,7 +68,14 @@ body {
   --bs-btn-active-color: var(--accent-contrast);
   --bs-btn-active-bg: var(--accent);
   --bs-btn-active-border-color: var(--accent);
-  --bs-btn-focus-shadow-rgb: 51, 65, 85;
+  --bs-btn-focus-shadow-rgb: var(--accent-rgb);
+}
+
+/* Same box for the sun and the moon, so the toggle does not change its size. */
+.theme-icon {
+  display: inline-block;
+  width: 1.25em;
+  text-align: center;
 }
 
 .glass {
@@ -57,7 +89,10 @@ body {
 /* Cards: lift on hover and keyboard focus. */
 .glass-card {
   --bs-card-bg: transparent;
-  background: var(--glass-card-bg);
+  --glass-card-tint: transparent;
+  background:
+    linear-gradient(var(--glass-card-tint), var(--glass-card-tint)),
+    var(--glass-card-bg);
   backdrop-filter: var(--glass-card-blur);
   -webkit-backdrop-filter: var(--glass-card-blur);
   transition:
@@ -70,6 +105,13 @@ body {
   transform: translateY(-6px);
   box-shadow: var(--glass-shadow-hover);
 }
+
+/* Each card gets its own glass tint. The colors repeat every five cards. */
+.book-item:nth-child(5n + 1) .glass-card { --glass-card-tint: var(--tint-blue); }
+.book-item:nth-child(5n + 2) .glass-card { --glass-card-tint: var(--tint-violet); }
+.book-item:nth-child(5n + 3) .glass-card { --glass-card-tint: var(--tint-rose); }
+.book-item:nth-child(5n + 4) .glass-card { --glass-card-tint: var(--tint-amber); }
+.book-item:nth-child(5n + 5) .glass-card { --glass-card-tint: var(--tint-green); }
 
 /* Cards fade in one after the other. */
 .book-item {

@@ -7,6 +7,19 @@ import { afterEach } from "vitest";
   globalThis as { IS_REACT_ACT_ENVIRONMENT?: boolean }
 ).IS_REACT_ACT_ENVIRONMENT = true;
 
+// jsdom has no `matchMedia`, but sonner reads the color scheme with it.
+window.matchMedia ??= (query: string) =>
+  ({
+    matches: false,
+    media: query,
+    addEventListener: () => {},
+    removeEventListener: () => {},
+    addListener: () => {},
+    removeListener: () => {},
+    dispatchEvent: () => false,
+    onchange: null,
+  }) as MediaQueryList;
+
 afterEach(() => {
   cleanup();
   localStorage.clear();

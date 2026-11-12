@@ -10,7 +10,8 @@ export default defineConfig({
   },
   server: {
     open: true,
-    port: 3000,
+    // 3003 so this branch runs next to variant-bootstrap (3000), variant-tailwind (3001) and variant-shadcn (3002).
+    port: 3003,
   },
   test: {
     environment: "jsdom",

@@ -1,14 +1,3 @@
-
-type Gradients = {
-  page: string;
-  card: string;
-  header: string;
-  dialogTitle: string;
-  button: string;
-  primary: string;
-  danger: string;
-};
-
 const base = {
   fonts: {
     body: 'system-ui, -apple-system, "Segoe UI", Roboto, sans-serif',
@@ -38,64 +27,53 @@ const base = {
   breakpoints: { sm: "40rem", md: "48rem", lg: "64rem" },
   durations: { fast: "150ms" },
 };
-
-/** Plain themes use flat fills where the Aero theme uses glossy gradients. */
-function flatGradients(colors: {
-  bg: string;
-  surface: string;
-  primary: string;
-  danger: string;
-}): Gradients {
-  return {
-    page: colors.bg,
-    card: colors.surface,
-    header: "transparent",
-    dialogTitle: "transparent",
-    button: colors.surface,
-    primary: colors.primary,
-    danger: colors.danger,
-  };
-}
-
-const flatEffects = {
-  glassFilter: "none",
-  titleGlow: "none",
-  highlight: "none",
-};
-
+/** The same Aero glass in the dark: deep-blue desktop, smoked glass, glossy buttons. */
 export const darkTheme: Theme = {
   ...base,
+  fonts: { body: '"Segoe UI", Tahoma, Geneva, Verdana, sans-serif' },
   colors: {
-    bg: "#12151a",
-    surface: "#1c2128",
+    bg: "#0b1d33",
+    surface: "#14263b",
     text: "#e6edf3",
-    muted: "#9aa4af",
-    border: "#3a424d",
+    muted: "#a9bbd0",
+    border: "#5d7a9c",
     primary: "#6b9bff",
     onPrimary: "#0b1220",
     danger: "#ff8a80",
     onDanger: "#1a0b0a",
     focus: "#8ab4ff",
-    backdrop: "rgba(0, 0, 0, 0.7)",
+    backdrop: "rgba(0, 0, 0, 0.6)",
     star: "#f5b84b",
-    titleText: "#e6edf3",
+    titleText: "#e6f0ff",
     status: {
-      "want-to-read": { bg: "#1e3a5f", fg: "#cfe3ff" },
+      "want-to-read": { bg: "#2f5f9e", fg: "#eaf3ff" },
       reading: { bg: "#5a4510", fg: "#fde9a8" },
       done: { bg: "#1a4d2e", fg: "#c3f0d0" },
     },
   },
   shadows: {
-    card: "0 1px 2px rgba(0, 0, 0, 0.5)",
-    raised: "0 10px 30px rgba(0, 0, 0, 0.6)",
+    card: "0 2px 8px rgba(0, 0, 0, 0.55)",
+    raised: "0 8px 28px rgba(0, 0, 0, 0.75)",
   },
-  gradients: flatGradients({
-    bg: "#12151a",
-    surface: "#1c2128",
-    primary: "#6b9bff",
-    danger: "#ff8a80",
-  }),
-  effects: flatEffects,
+  gradients: {
+    page: "linear-gradient(160deg, #071526 0%, #0f2a47 45%, #1b4a73 100%)",
+    card: "linear-gradient(rgba(44, 74, 112, 0.82), rgba(18, 36, 62, 0.88))",
+    header:
+      "linear-gradient(rgba(96, 146, 206, 0.5), rgba(20, 46, 82, 0.65))",
+    dialogTitle:
+      "linear-gradient(rgba(96, 146, 206, 0.55), rgba(20, 46, 82, 0.8))",
+    button:
+      "linear-gradient(#52698a 0%, #3a4f6b 48%, #2a3d55 50%, #3b5675 100%)",
+    primary:
+      "linear-gradient(#b3cfff 0%, #85adf7 48%, #5a8de8 50%, #80aaf6 100%)",
+    danger:
+      "linear-gradient(#ffbdb6 0%, #ff948a 48%, #f0645a 50%, #ff8f85 100%)",
+  },
+  effects: {
+    glassFilter: "blur(0.5rem) saturate(1.4)",
+    titleGlow: "0 0 0.75rem rgba(120, 170, 240, 0.7)",
+    highlight: "inset 0 1px 0 rgba(255, 255, 255, 0.25)",
+  },
 };
 
 /** Windows 7 Aero: sky-blue desktop, frosted glass panels and glossy buttons. */

@@ -1,1 +1,46 @@
 @import "tailwindcss";
+
+@theme {
+  --font-sans: Tahoma, "MS Sans Serif", Arial, sans-serif;
+
+  --color-surface: #008080;
+  --color-surface-raised: #c0c0c0;
+  --color-field: #ffffff;
+  --color-ink: #000000;
+  --color-muted: #404040;
+  --color-accent: #000080;
+  --color-accent-contrast: #ffffff;
+  --color-danger: #800000;
+  --color-star: #5c4400;
+  --color-tooltip: #ffffe1;
+  --color-backdrop: rgb(0 0 0 / 0.5);
+
+  --color-bevel-light: #ffffff;
+  --color-bevel-mid: #dfdfdf;
+  --color-bevel-shadow: #808080;
+  --color-bevel-dark: #0a0a0a;
+
+  --color-status-want-bg: #cce0ff;
+  --color-status-want-text: #000080;
+  --color-status-reading-bg: #ffffa0;
+  --color-status-reading-text: #4d3800;
+  --color-status-done-bg: #b0ffb0;
+  --color-status-done-text: #004000;
+
+  --shadow-raised:
+    inset -1px -1px var(--color-bevel-dark),
+    inset 1px 1px var(--color-bevel-light),
+    inset -2px -2px var(--color-bevel-shadow),
+    inset 2px 2px var(--color-bevel-mid);
+  --shadow-sunken:
+    inset -1px -1px var(--color-bevel-light),
+    inset 1px 1px var(--color-bevel-shadow),
+    inset -2px -2px var(--color-bevel-mid),
+    inset 2px 2px var(--color-bevel-dark);
+}
+
+@layer base {
+  body {
+    @apply bg-surface font-sans text-ink;
+  }
+}

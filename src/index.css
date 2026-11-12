@@ -1,1 +1,108 @@
-/* Intentionally empty. Your styling approach goes here (or somewhere else, depending on the approach). */
+/* Design tokens for the glass look. Colors, blur and shadows live only here. */
+:root {
+  --app-gradient: linear-gradient(135deg, #e2e8f0 0%, #dbe4f0 55%, #e6ebf2 100%);
+  --glass-bg: rgba(var(--bs-body-bg-rgb), 0.72);
+  --glass-card-bg: rgba(255, 255, 255, 0.42);
+  --glass-card-blur: blur(20px);
+  --glass-border: rgba(255, 255, 255, 0.75);
+  --glass-blur: blur(14px);
+  --glass-shadow: 0 6px 24px rgba(15, 23, 42, 0.08);
+  --glass-shadow-hover: 0 14px 36px rgba(15, 23, 42, 0.16);
+  --accent: #334155;
+  --accent-hover: #1e293b;
+  --accent-contrast: #ffffff;
+  --motion-fast: 0.25s;
+  --motion-enter: 0.5s;
+}
+
+body {
+  min-height: 100vh;
+  background: var(--app-gradient) fixed;
+}
+
+/* Accent buttons: "Add book" (solid) and the status filter (outline). */
+.btn-accent {
+  --bs-btn-color: var(--accent-contrast);
+  --bs-btn-bg: var(--accent);
+  --bs-btn-border-color: var(--accent);
+  --bs-btn-hover-color: var(--accent-contrast);
+  --bs-btn-hover-bg: var(--accent-hover);
+  --bs-btn-hover-border-color: var(--accent-hover);
+  --bs-btn-active-color: var(--accent-contrast);
+  --bs-btn-active-bg: var(--accent-hover);
+  --bs-btn-active-border-color: var(--accent-hover);
+  --bs-btn-focus-shadow-rgb: 51, 65, 85;
+}
+
+.btn-accent-outline {
+  --bs-btn-color: var(--accent);
+  --bs-btn-border-color: var(--accent);
+  --bs-btn-hover-color: var(--accent-contrast);
+  --bs-btn-hover-bg: var(--accent);
+  --bs-btn-hover-border-color: var(--accent);
+  --bs-btn-active-color: var(--accent-contrast);
+  --bs-btn-active-bg: var(--accent);
+  --bs-btn-active-border-color: var(--accent);
+  --bs-btn-focus-shadow-rgb: 51, 65, 85;
+}
+
+.glass {
+  background: var(--glass-bg);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--glass-shadow);
+}
+
+/* Cards: lift on hover and keyboard focus. */
+.glass-card {
+  --bs-card-bg: transparent;
+  background: var(--glass-card-bg);
+  backdrop-filter: var(--glass-card-blur);
+  -webkit-backdrop-filter: var(--glass-card-blur);
+  transition:
+    transform var(--motion-fast) ease,
+    box-shadow var(--motion-fast) ease;
+}
+
+.glass-card:hover,
+.glass-card:focus-within {
+  transform: translateY(-6px);
+  box-shadow: var(--glass-shadow-hover);
+}
+
+/* Cards fade in one after the other. */
+.book-item {
+  animation: book-enter var(--motion-enter) ease both;
+}
+
+.book-item:nth-child(2) { animation-delay: 0.05s; }
+.book-item:nth-child(3) { animation-delay: 0.1s; }
+.book-item:nth-child(4) { animation-delay: 0.15s; }
+.book-item:nth-child(5) { animation-delay: 0.2s; }
+.book-item:nth-child(6) { animation-delay: 0.25s; }
+.book-item:nth-child(n + 7) { animation-delay: 0.3s; }
+
+@keyframes book-enter {
+  from {
+    opacity: 0;
+    transform: translateY(16px) scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .book-item {
+    animation: none;
+  }
+
+  .glass-card,
+  .glass-card:hover,
+  .glass-card:focus-within {
+    transition: none;
+    transform: none;
+  }
+}

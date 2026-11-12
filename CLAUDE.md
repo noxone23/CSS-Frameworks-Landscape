@@ -19,12 +19,14 @@ A reading list built with React 19, TypeScript and Vite. No backend, the data is
 
 ## Styling
 
-<!-- TODO: Replace this section with the rules for the approach you chose. -->
+Approach on this branch: **Bootstrap 5 with react-bootstrap**.
 
-Choose exactly one styling approach per branch and write it down here **before** you build. Example for Tailwind:
-
-- Use Tailwind CSS v4 only. No `tailwind.config.js`, configure with `@theme` in `src/index.css`.
+- Bootstrap CSS is imported once in `src/index.tsx` (`bootstrap/dist/css/bootstrap.min.css`). Do not import it anywhere else.
+- Use Bootstrap classes for layout and typography (`container`, `row`, `col-*`, `d-flex`, `gap-*`, `fs-*`, `fw-*`, `text-*`, spacing utilities).
+- Use `react-bootstrap` components for interactive elements such as `Modal`, `Toast`, `Button`, `Form` and `Dropdown`. Do not rebuild them by hand and do not use Bootstrap's JavaScript via `data-bs-*` attributes.
 - No inline `style` props, no other CSS libraries.
+- Customize with Bootstrap variables or CSS custom properties (`--bs-*`) in `src/index.css`. Keep custom CSS to a minimum.
+- Exception for the glass look: `src/index.css` may hold the design tokens (gradient, glass background, blur, shadows, motion durations) and a few helper classes (`.glass`, `.glass-card`, `.book-item`). Use the tokens, do not hard-code colors in components. Animations must respect `prefers-reduced-motion`.
 - Reuse components. Do not repeat long class lists, extract a component.
 
 Rules for every approach:
